@@ -1,0 +1,39 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {
+    "align": true,
+    "eofline": true,
+    "class-name": true,
+    "cyclomatic-complexity": true,
+    "import-spacing": true,
+    "indent": true,
+    "member-access": false,
+    "no-console": {
+      "severity": "warning"
+    },
+    "no-debugger": {
+      "severity": "warning"
+    },
+    "member-ordering": true
+  },
+  "rules": {
+    "align": true,
+    "eofline": true,
+    "class-name": true,
+    "cyclomatic-complexity": true,
+    "import-spacing": true,
+    "indent": true,
+    "member-access": false,
+    "no-console": {
+      "severity": "warning"
+    },
+    "no-debugger": {
+      "severity": "warning"
+    },
+    "member-ordering": true
+  },
+  "rulesDirectory": []
+}
