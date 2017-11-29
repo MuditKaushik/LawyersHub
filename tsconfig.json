@@ -29,7 +29,7 @@
     // "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
 
     /* Strict Type-Checking Options */
-    "strict": true
+    "strict": true,
     /* Enable all strict type-checking options. */
     "noImplicitAny": true,
     /* Raise error on expressions and declarations with an implied 'any' type. */
@@ -56,7 +56,14 @@
     ],
     /* List of folders to include type definitions from. */
     "types": [
-      "core-js"
+      "@ng-bootstrap/ng-bootstrap",
+      "body-parser",
+      "core-js",
+      "express",
+      "gulp",
+      "http-status-codes",
+      "node",
+      "run-sequence"
     ],
     /* Type declaration files to be included in compilation. */
     // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
@@ -76,10 +83,10 @@
   },
   "compileOnSave": true,
   "exclude": [
-    "node_modules/"
+    "node_modules/",
+    "gulpfile.ts"
   ],
   "include": [
-    "src/",
-    "gulpfile.ts"
+    "./src/**/*"
   ]
 }
