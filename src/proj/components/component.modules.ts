@@ -1,16 +1,19 @@
-import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
-import {CommonModule} from '@angular/common';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {SigninComponent} from './account/signin.component';
-import {SignupComponent} from './account/signup.component';
-import {LinksComponent} from './account/links.component';
-import {SettingsComponents} from './settings/settings.components';
-import {SyncdataComponent} from './syncdata/syncdata.component';
-import {PrivateClientComponent} from './dashboard/private-client.component';
-import {ClientAddEditComponent} from './dashboard/client-add-edit.component';
-import {ClientRemoveComponent} from './dashboard/client-remove.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LinksComponent } from './account/links.component';
+import { SigninComponent } from './account/signin.component';
+import { SignupComponent } from './account/signup.component';
+import { AddClientComponent } from './dashboard/add-client.component';
+import { ClientAddEditComponent } from './dashboard/client-add-edit.component';
+import { ClientRemoveComponent } from './dashboard/client-remove.component';
+import { ClientViewComponent } from './dashboard/client-view.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PrivateClientComponent } from './dashboard/private-client.component';
+import { PublicClientComponent } from './dashboard/public-client.component';
+import { SettingsComponents } from './settings/settings.components';
+import { SyncdataComponent } from './syncdata/syncdata.component';
 
 @NgModule({
     imports: [RouterModule, CommonModule, NgbModule.forRoot()],
@@ -21,9 +24,12 @@ import {ClientRemoveComponent} from './dashboard/client-remove.component';
         SettingsComponents,
         SyncdataComponent,
         LinksComponent,
+        AddClientComponent,
         PrivateClientComponent,
+        PublicClientComponent,
         ClientAddEditComponent,
-        ClientRemoveComponent
+        ClientRemoveComponent,
+        ClientViewComponent,
     ],
     declarations: [
         DashboardComponent,
@@ -32,10 +38,13 @@ import {ClientRemoveComponent} from './dashboard/client-remove.component';
         SettingsComponents,
         SyncdataComponent,
         LinksComponent,
+        AddClientComponent,
         PrivateClientComponent,
+        PublicClientComponent,
         ClientAddEditComponent,
-        ClientRemoveComponent
-    ]
+        ClientRemoveComponent,
+        ClientViewComponent,
+    ],
 })
 export class ComponentModules {
 }

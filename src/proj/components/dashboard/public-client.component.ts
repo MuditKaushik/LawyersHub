@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({
-    selector: 'client-add-edit',
-    templateUrl: GetTemplate('dashboard', 'client-add-edit.html'),
+    templateUrl: GetTemplate('dashboard', 'public-client.html'),
 })
-export class ClientAddEditComponent {
+export class PublicClientComponent {
     image: string = GetImages('lawyer.png');
 
-    constructor() {
-    }
+    constructor() { }
 }

@@ -33,7 +33,12 @@
     "no-debugger": {
       "severity": "warning"
     },
-    "member-ordering": true
+    "no-empty": false,
+    "member-ordering": true,
+    "quotemark": {
+      "options": "single",
+      "severity": "warning"
+    }
   },
   "rulesDirectory": []
 }

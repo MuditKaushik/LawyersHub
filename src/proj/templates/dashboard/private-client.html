@@ -1,0 +1,48 @@
+<h3>
+    <i class="fa fa-user-secret fa-fw fa-1x"></i> Private Client
+</h3>
+<hr/>
+<ul class="list-unstyled">
+    <li class="media mt-2">
+        <img class="mr-3 align-self-start rounded-circle" [src]="image" width="75" height="75" alt="client image" />
+        <div class="media-body">
+            <h5 class="mt-0 mb-1 client-name" data-toggle="collapse" data-target="#detail" aria-expanded="false" aria-controls="detail">
+                Client Name
+                <i class="fa fa-info-circle fa-fw" placement="right" ngbTooltip="See client details."></i>
+            </h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
+            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
+            felis in faucibus.
+            <div class="collapse mt-2" id="detail">
+                <ngb-tabset>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle="">
+                            <i class="fa fa-user fa-fw"></i> Details
+                        </ng-template>
+                        <ng-template ngbTabContent="">
+                            <client-view></client-view>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle="">
+                            <i class="fa fa-edit fa-fw"></i> Edit
+                        </ng-template>
+                        <ng-template ngbTabContent="">
+                            <form action="">
+                                <client-add-edit></client-add-edit>
+                            </form>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle="">
+                            <i class="fa fa-trash fa-fw"></i> Remove
+                        </ng-template>
+                        <ng-template ngbTabContent="">
+                            <client-remove></client-remove>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </div>
+    </li>
+</ul>

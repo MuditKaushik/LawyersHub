@@ -1,7 +1,7 @@
 export function GetTemplate(component: string, template: string) {
-    return `./src/proj/templates/${component}/${template}`;
-};
+    return `/app/proj/templates/${component}/${template}`;
+}
 
 export function GetImages(image: string) {
-    return `./src/proj/images/${image}`;
-};
+    return `/app/proj/images/${image}`;
+}

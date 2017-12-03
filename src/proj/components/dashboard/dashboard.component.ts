@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {GetTemplate} from '../../services/Utility/pathUtil'
+import {GetTemplate} from '../../services/Utility/pathUtil';
 
 @Component({
-    templateUrl: GetTemplate('dashboard', 'dashboard.html')
+    templateUrl: GetTemplate('dashboard', 'dashboard.html'),
 })
 export class DashboardComponent {
 }
