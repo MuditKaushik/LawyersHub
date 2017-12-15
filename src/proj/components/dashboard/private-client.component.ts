@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
+import { Component, OnInit } from '@angular/core';
+import { DashboardHttpService } from '../../services/httpServices/dashboardServices/http-dashboard-service';
+import { GetImages, GetStyle, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({
     templateUrl: GetTemplate('dashboard', 'private-client.html'),
-    styles: [`
-        .client-name {
-            cursor: pointer;
-        }
-    `],
+    styleUrls: [
+        GetStyle('dashboard', 'public-private-client.css'),
+    ],
 })
-export class PrivateClientComponent {
-    loop: number = 100;
+export class PrivateClientComponent implements OnInit {
+    personList: any;
     image: string = GetImages('lawyer.png');
 
-    constructor() {
+    constructor(private dashboardHttp: DashboardHttpService) {
+    }
+
+    ngOnInit(): void {
+        this.dashboardHttp.getClientList().subscribe((data: any) => {
+            this.personList = data.value;
+        });
     }
 }

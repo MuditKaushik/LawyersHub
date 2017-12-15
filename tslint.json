@@ -38,7 +38,8 @@
     "quotemark": {
       "options": "single",
       "severity": "warning"
-    }
+    },
+    "prefer-const": false
   },
   "rulesDirectory": []
 }

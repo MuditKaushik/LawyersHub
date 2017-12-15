@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardHttpService } from '../services/httpServices/dashboardServices/http-dashboard-service';
 import { LinksComponent } from './account/links.component';
 import { SigninComponent } from './account/signin.component';
 import { SignupComponent } from './account/signup.component';
@@ -16,7 +18,12 @@ import { SettingsComponents } from './settings/settings.components';
 import { SyncdataComponent } from './syncdata/syncdata.component';
 
 @NgModule({
-    imports: [RouterModule, CommonModule, NgbModule.forRoot()],
+    imports: [
+        CommonModule,
+        HttpModule,
+        RouterModule,
+        NgbModule.forRoot(),
+    ],
     exports: [
         DashboardComponent,
         SigninComponent,
@@ -44,6 +51,9 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientAddEditComponent,
         ClientRemoveComponent,
         ClientViewComponent,
+    ],
+    providers: [
+        DashboardHttpService,
     ],
 })
 export class ComponentModules {
