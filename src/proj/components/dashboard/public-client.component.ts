@@ -4,7 +4,7 @@ import { GetImages, GetStyle, GetTemplate } from '../../services/Utility/pathUti
 @Component({
     templateUrl: GetTemplate('dashboard', 'public-client.html'),
     styleUrls: [
-        GetStyle('dashboard', 'public-private-client.css'),
+        GetStyle('dashboard', 'private-public-client.css'),
     ],
 })
 export class PublicClientComponent {

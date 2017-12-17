@@ -1,0 +1,23 @@
+<h3>
+    <i class="fa fa-print fa-fw"></i> Print Client
+</h3>
+<hr/>
+<loader *ngIf="showloader"></loader>
+<ngb-tabset *ngIf="!showloader">
+    <ngb-tab>
+        <ng-template ngbTabTitle="">
+            <i class="fa fa-user-secret fa-fw"></i> Private Clients
+        </ng-template>
+        <ng-template ngbTabContent="">
+            <client-list-table [clientList]="privateClients"></client-list-table>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle="">
+            <i class="fa fa-users fa-fw"></i> Public Clients
+        </ng-template>
+        <ng-template ngbTabContent="">
+            <client-list-table [clientList]="publicClients"></client-list-table>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

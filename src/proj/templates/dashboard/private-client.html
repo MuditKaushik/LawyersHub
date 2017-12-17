@@ -1,7 +1,9 @@
+<em class="badge badge-secondary float-right">count {{clientCount}}</em>
 <h3>
-    <i class="fa fa-user-secret fa-fw fa-1x"></i> Private Client
+    <i class="fa fa-user-secret fa-fw fa-1x"></i> Private Clients
 </h3>
 <hr/>
+<loader *ngIf="showloader"></loader>
 <ul class="list-unstyled">
     <li class="media mt-2" *ngFor="let person of personList">
         <img class="mr-3 align-self-start rounded-circle" [src]="image" width="75" height="75" alt="client image" />
@@ -15,14 +17,6 @@
             felis in faucibus.
             <div class="collapse mt-2" attr.id="{{person.UserName}}">
                 <ngb-tabset>
-                    <ngb-tab>
-                        <ng-template ngbTabTitle="">
-                            <i class="fa fa-user fa-fw"></i> Details
-                        </ng-template>
-                        <ng-template ngbTabContent="">
-                            <client-view></client-view>
-                        </ng-template>
-                    </ngb-tab>
                     <ngb-tab>
                         <ng-template ngbTabTitle="">
                             <i class="fa fa-edit fa-fw"></i> Edit

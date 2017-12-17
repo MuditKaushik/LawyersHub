@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clientList">
+            <td scope="row">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" />
+                    <span class="custom-control-indicator"></span>
+                </label>
+            </td>
+            <td>{{client.FirstName}} {{client.LastName}}</td>
+            <td>{{client.Gender}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

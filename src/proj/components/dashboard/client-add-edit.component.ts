@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IClientModel } from '../../models/data-models';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({
@@ -7,7 +8,7 @@ import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 })
 export class ClientAddEditComponent {
     image: string = GetImages('lawyer.png');
-
     constructor() {
     }
+    private createForm(): void { }
 }

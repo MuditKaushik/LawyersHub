@@ -10,11 +10,13 @@ import { SignupComponent } from './account/signup.component';
 import { AddClientComponent } from './dashboard/add-client.component';
 import { ClientAddEditComponent } from './dashboard/client-add-edit.component';
 import { ClientRemoveComponent } from './dashboard/client-remove.component';
-import { ClientViewComponent } from './dashboard/client-view.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PrintClientComponent } from './dashboard/print-client.component';
 import { PrivateClientComponent } from './dashboard/private-client.component';
 import { PublicClientComponent } from './dashboard/public-client.component';
 import { SettingsComponents } from './settings/settings.components';
+import { ClientListTableComponent } from './shared/client-list-table.component';
+import { LoaderComponent } from './shared/loader.component';
 import { SyncdataComponent } from './syncdata/syncdata.component';
 
 @NgModule({
@@ -31,12 +33,14 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         SettingsComponents,
         SyncdataComponent,
         LinksComponent,
+        LoaderComponent,
         AddClientComponent,
         PrivateClientComponent,
         PublicClientComponent,
         ClientAddEditComponent,
         ClientRemoveComponent,
-        ClientViewComponent,
+        PrintClientComponent,
+        ClientListTableComponent,
     ],
     declarations: [
         DashboardComponent,
@@ -45,12 +49,14 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         SettingsComponents,
         SyncdataComponent,
         LinksComponent,
+        LoaderComponent,
         AddClientComponent,
         PrivateClientComponent,
         PublicClientComponent,
         ClientAddEditComponent,
         ClientRemoveComponent,
-        ClientViewComponent,
+        PrintClientComponent,
+        ClientListTableComponent,
     ],
     providers: [
         DashboardHttpService,
