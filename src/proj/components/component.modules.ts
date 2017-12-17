@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +25,8 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         CommonModule,
         HttpModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         NgbModule.forRoot(),
     ],
     exports: [
