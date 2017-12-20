@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDirectiveModule } from '../directives/CustomDirectiveModule';
 import { DashboardHttpService } from '../services/httpServices/dashboardServices/http-dashboard-service';
 import { LinksComponent } from './account/links.component';
 import { SigninComponent } from './account/signin.component';
@@ -27,6 +28,7 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
+        CustomDirectiveModule,
         NgbModule.forRoot(),
     ],
     exports: [
@@ -43,7 +45,6 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientAddEditComponent,
         ClientRemoveComponent,
         PrintClientComponent,
-        ClientListTableComponent,
     ],
     declarations: [
         DashboardComponent,

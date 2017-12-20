@@ -40,7 +40,9 @@
       "severity": "warning"
     },
     "prefer-const": false,
-    "max-line-length": true
+    "max-line-length": true,
+    "forin": false,
+    "no-unused-expression": false
   },
   "rulesDirectory": []
 }

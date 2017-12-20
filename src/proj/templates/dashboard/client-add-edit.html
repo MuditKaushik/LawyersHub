@@ -1,19 +1,22 @@
 <div class="container-fluid mt-4">
-    <form [formGroup]="clientAddEditForm">
+    <form [formGroup]="clientAddEditForm" (ngSubmit)="add_update_client(clientAddEditForm)" novalidate>
         <div class="row">
             <div class="col-8">
                 <div class="row form-group">
                     <div class="col-md-4">
                         <label for="">First Name</label>
-                        <input type="text" class="form-control" name="" id="firstName" placeholder="" formControlName="firstName" />
+                        <input type="text" class="form-control" placeholder="" formControlName="firstName" errorMessage />
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="col-md-4">
                         <label for="">Middle Name</label>
-                        <input type="text" class="form-control" name="" id="middleName" placeholder="" formControlName="middleName" />
+                        <input type="text" class="form-control" placeholder="" formControlName="middleName" errorMessage />
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="col-md-4">
                         <label for="">Last Name</label>
-                        <input type="text" class="form-control" name="" id="lastName" placeholder="" formControlName="lastName" />
+                        <input type="text" class="form-control" placeholder="" formControlName="lastName" errorMessage />
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -21,24 +24,30 @@
                         <label for="">Address</label>
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="" id="" placeholder="Address 1" formControlName="address1">
+                                <input type="text" class="form-control" placeholder="Address 1" formControlName="address1" errorMessage />
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="" id="" placeholder="Address 2">
+                                <input type="text" class="form-control" placeholder="Address 2" formControlName="address2" errorMessage />
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="" id="" placeholder="State">
+                                <input type="text" class="form-control" placeholder="State" formControlName="state" errorMessage />
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="" id="" placeholder="District">
+                                <input type="text" class="form-control" placeholder="District" formControlName="district" errorMessage />
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="" id="" placeholder="City">
+                                <input type="text" class="form-control" placeholder="City" formControlName="city" errorMessage />
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="" id="" placeholder="Pincode">
+                                <input type="text" class="form-control" placeholder="Pincode" formControlName="pincode" errorMessage />
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
@@ -46,11 +55,13 @@
                 <div class="row form-group">
                     <div class="col">
                         <label for="client-email">Email</label>
-                        <input type="email" class="form-control" name="" id="" placeholder="" />
+                        <input type="email" class="form-control" placeholder="" formControlName="email" errorMessage />
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="col">
                         <label for="client-phone">Phone</label>
-                        <input type="text" class="form-control" name="" id="" placeholder="" />
+                        <input type="text" class="form-control" placeholder="" formControlName="phone" errorMessage />
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -58,12 +69,12 @@
                         <label for="">Client</label>
                         <div class="w-100"></div>
                         <label class="custom-control custom-radio">
-                            <input id="privateradio" name="radio" type="radio" class="custom-control-input" [checked]="" />
+                            <input name="radio" type="radio" class="custom-control-input" [checked]="isPrivate" />
                             <span class="custom-control-indicator"></span>
                             <span class="custom-control-description">Is Private</span>
                         </label>
                         <label class="custom-control custom-radio">
-                            <input id="publicradio" name="radio" type="radio" class="custom-control-input" />
+                            <input name="radio" type="radio" class="custom-control-input" [checked]="isPrivate" />
                             <span class="custom-control-indicator"></span>
                             <span class="custom-control-description">Is Public</span>
                         </label>
@@ -76,7 +87,7 @@
                     </div>
                     <div class="col-3">
                         <label for="">Occupation</label>
-                        <select name="" id="" class="form-control">
+                        <select class="form-control">
                             <option value="">Select</option>
                         </select>
                     </div>
@@ -84,7 +95,8 @@
                 <div class="row form-group">
                     <div class="col">
                         <label for="about client">About Client</label>
-                        <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea cols="30" rows="3" class="form-control" formControlName="about" errorMessage></textarea>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary">Update</button>
@@ -97,7 +109,7 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-12 justify-content-center">
-                        <input type="file" name="" id="clientImg" />
+                        <input type="file" name="" />
                     </div>
                 </div>
             </div>

@@ -62,6 +62,7 @@
       "express",
       "gulp",
       "http-status-codes",
+      "jquery",
       "node",
       "run-sequence"
     ],
