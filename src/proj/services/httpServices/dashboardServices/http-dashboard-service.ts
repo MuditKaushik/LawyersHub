@@ -1,20 +1,18 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http, Request, Response } from '@angular/http';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { DashboardEnum } from '../httpServicesUtility/httpEndpontsEnum';
 
 @Injectable()
 export class DashboardHttpService {
-    private baseUrl: string;
-    constructor(private http: Http) {
-        this.baseUrl = `http://services.odata.org/v4/TripPinServiceRW`;
+    constructor(private http: HttpClient) {
     }
-
-    getClientList(): Observable<any> {
-        return this.http.get(this.baseUrl.concat(`/People`)).map((data: Response) => {
-            return data.json() as any;
+    getClientList(userId: string): Observable<HttpResponse<any>> {
+        return this.http.get(`${DashboardEnum.clientEndpoints}/${userId}`, { observe: 'response' }).map((data) => {
+            return data;
         });
     }
 }

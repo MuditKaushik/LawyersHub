@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IdentityModel } from '../../models/data-models';
+import { IdentityService } from '../../services/httpServices/http-services';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({
@@ -7,11 +10,24 @@ import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 })
 export class HomeComponent implements OnInit {
     logo: string;
-
-    constructor() {
+    isAuthUser: boolean;
+    user: string;
+    constructor(private identity: IdentityService, private route: Router) {
     }
 
     ngOnInit(): void {
+        this.IsAuthenticated(this.identity.getIdentity());
         this.logo = GetImages('lawyer.png');
+    }
+    logout(): void {
+        this.identity.clearUserIdentity();
+        this.IsAuthenticated(this.identity.getIdentity());
+        this.route.navigate(['/']);
+    }
+    IsAuthenticated(identityUser: IdentityModel): void {
+        if (identityUser) {
+            this.isAuthUser = identityUser.isActive;
+            this.user = `${identityUser.fullName} (${identityUser.userName})`;
+        }
     }
 }

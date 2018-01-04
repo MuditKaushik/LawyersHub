@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { ErrorMessageDirective } from './shared/errorMessagesDirective';
+import { ValidationDirective } from './shared/ValidationDirective';
 
 @NgModule({
     declarations: [
-        ErrorMessageDirective,
+        ValidationDirective,
     ],
     exports: [
-        ErrorMessageDirective,
+        ValidationDirective,
     ],
 })
 

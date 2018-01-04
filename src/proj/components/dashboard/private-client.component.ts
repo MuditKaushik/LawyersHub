@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardHttpService } from '../../services/httpServices/dashboardServices/http-dashboard-service';
+import * as httpStatus from 'http-status-codes';
+import { DashboardHttpService, IdentityService } from '../../services/httpServices/http-services';
 import { GetImages, GetStyle, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({
@@ -13,15 +14,19 @@ export class PrivateClientComponent implements OnInit {
     image: string = GetImages('lawyer.png');
     showloader: boolean;
     clientCount: number;
-    constructor(private dashboardHttp: DashboardHttpService) {
+    constructor(private dashboardHttp: DashboardHttpService, private identity: IdentityService) {
     }
 
     ngOnInit(): void {
         this.showloader = true;
-        this.dashboardHttp.getClientList().subscribe((data: any) => {
+        this.dashboardHttp.getClientList(this.identity.getIdentity().UserId).subscribe((data) => {
+            if (data.status === httpStatus.OK) {
+                this.clientCount = data.body.length;
+                console.log(data.body);
+            }
+        }, (err) => {
+        }, () => {
             this.showloader = false;
-            this.clientCount = data.value.length;
-            this.personList = data.value;
         });
     }
 }

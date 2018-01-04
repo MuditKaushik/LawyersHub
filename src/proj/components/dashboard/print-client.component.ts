@@ -9,14 +9,16 @@ export class PrintClientComponent implements OnInit {
     privateClients: any[];
     publicClients: any[];
     showloader: boolean;
-    constructor(private dashboardService: DashboardHttpService) { }
+    constructor() {
+        // private dashboardService: DashboardHttpService
+    }
 
     ngOnInit(): void {
         this.showloader = true;
-        this.dashboardService.getClientList().subscribe((data: any) => {
-            this.showloader = false;
-            this.privateClients = data.value;
-            this.publicClients = data.value;
-        });
+        // this.dashboardService.getClientList().subscribe((data: any) => {
+        //     this.showloader = false;
+        //     this.privateClients = data.value;
+        //     this.publicClients = data.value;
+        // });
     }
 }

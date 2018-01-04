@@ -42,7 +42,14 @@
     "prefer-const": false,
     "max-line-length": true,
     "forin": false,
-    "no-unused-expression": false
+    "no-unused-expression": false,
+    "variable-name": {
+      "options": [
+        "allow-leading-underscore",
+        "allow-trailing-underscore"
+      ],
+      "severity": "warning"
+    }
   },
   "rulesDirectory": []
 }

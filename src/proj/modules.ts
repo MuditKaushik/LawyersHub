@@ -1,14 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ComponentModules } from './components/component.modules';
 import { HomeComponent } from './components/home/home.component';
 import { RouteConfig } from './router/router';
+import { AuthInterceptor } from './services/httpInterceptor/authInterceptor';
 
 @NgModule({
     imports: [
         ComponentModules,
-        HttpModule,
+        CommonModule,
         RouteConfig,
     ],
     exports: [BrowserModule],

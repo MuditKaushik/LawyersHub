@@ -6,11 +6,12 @@ import { HomeComponent } from '../components/home/home.component';
 import { SettingsComponents } from '../components/settings/settings.components';
 import { SyncdataComponent } from '../components/syncdata/syncdata.component';
 import { DashboardChildren } from './child-routes';
+import { RouteGaurd } from './route-gaurd';
 
 const routes: Routes = [
-    { path: 'dashboard', component: DashboardComponent, children: DashboardChildren },
-    { path: 'syncdata', component: SyncdataComponent },
-    { path: 'settings', component: SettingsComponents },
+    { path: 'dashboard', canActivate: [RouteGaurd], component: DashboardComponent, children: DashboardChildren },
+    { path: 'syncdata', canActivate: [RouteGaurd], component: SyncdataComponent },
+    { path: 'settings', canActivate: [RouteGaurd], component: SettingsComponents },
     { path: 'signup', component: SignupComponent },
     { path: 'home', component: HomeComponent },
     { path: '**', redirectTo: '/', pathMatch: 'full' },

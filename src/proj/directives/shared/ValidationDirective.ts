@@ -1,11 +1,12 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { ErrorMessagesEnum, ErrorTypesEnum } from '../../services/Utility/enumUtil';
 
 @Directive({
-    selector: '[errorMessage]',
+    selector: '[validator]',
 })
-export class ErrorMessageDirective {
+export class ValidationDirective {
+    @Input('validator') errorMessage: string;
     private element: HTMLElement;
     private errorMsgDiv: Element | null;
     constructor(private elementRef: ElementRef, private control: NgControl) {
@@ -30,6 +31,9 @@ export class ErrorMessageDirective {
                 break;
             case ErrorTypesEnum.pattern:
                 $(this.element).next().html(ErrorMessagesEnum.pattern);
+                break;
+            case ErrorTypesEnum.email:
+                $(this.element).next().html(ErrorMessagesEnum.email);
                 break;
             default: break;
         }

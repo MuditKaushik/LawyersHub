@@ -1,13 +1,12 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">
-        <img [src]="logo" width="30" height="30" class="d-inline-block align-top" alt="">
-        LawyersHub
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light justify-content-between">
+    <a class="navbar-brand" [routerLink]="['/']">
+        <img [src]="logo" width="30" height="30" class="d-inline-block align-top" alt=""> LawyersHub
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
-            aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="menu">
+    <div class="collapse navbar-collapse" id="menu" *ngIf="isAuthUser">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
@@ -22,8 +21,14 @@
                 <a class="nav-link" [routerLink]="['/account']">Account</a>
             </li>
         </ul>
-        <sign-in></sign-in>
+        <form class="form-inline my-2 my-lg-0">
+            <span class="navbar-text mr-3">
+                Welcome! {{user}}
+            </span>
+            <button class="btn btn-outline-secondary btn-sm" (click)="logout()">Logout</button>
+        </form>
     </div>
+    <sign-in (authUser)="IsAuthenticated($event)" *ngIf="!isAuthUser"></sign-in>
 </nav>
 <div class="container-fluid mt-5 pt-2">
     <router-outlet></router-outlet>

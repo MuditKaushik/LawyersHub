@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IClientModel } from '../../models/data-models';
 import { RegexPatternEnum } from '../../services/Utility/enumUtil';
@@ -9,18 +9,22 @@ import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
     templateUrl: GetTemplate('dashboard', 'client-add-edit.html'),
 })
 export class ClientAddEditComponent implements OnInit {
+    @Input('addClient') addClient: boolean;
+
     image: string = GetImages('lawyer.png');
     clientAddEditForm: FormGroup;
     clientModel: IClientModel = {} as IClientModel;
+    btn_label: string;
     constructor(private formBuilder: FormBuilder) {
     }
 
     ngOnInit(): void {
+        this.btn_label = (this.addClient) ? 'Submit' : 'Update';
         this.createForm();
     }
     feild_Validation(): void { }
     add_update_client(model: FormGroup): void {
-        console.log(this.clientAddEditForm.controls['']);
+        console.log(model);
     }
 
     private createForm(): FormGroup {
@@ -29,15 +33,15 @@ export class ClientAddEditComponent implements OnInit {
             middleName: new FormControl(this.clientModel.middleName, [Validators.pattern(RegexPatternEnum.stringPattern)]),
             lastName: new FormControl(this.clientModel.lastName, [Validators.required, Validators.pattern(RegexPatternEnum.stringPattern)]),
             address1: new FormControl(this.clientModel.address1, [Validators.required]),
-            address2: new FormControl(this.clientModel.address2, [Validators.required]),
+            address2: new FormControl(this.clientModel.address2, []),
             state: new FormControl(this.clientModel.state, [Validators.required]),
             district: new FormControl(this.clientModel.district, [Validators.required]),
             city: new FormControl(this.clientModel.city, [Validators.required]),
             pincode: new FormControl(this.clientModel.pincode, [Validators.required, Validators.pattern(RegexPatternEnum.numberPattern)]),
-            email: new FormControl(this.clientModel.email, [Validators.email]),
-            phone: new FormControl(this.clientModel.phone, [Validators.pattern(RegexPatternEnum.numberPattern)]),
-            porpose: new FormControl(this.clientModel.purpose, [Validators.required]),
-            occupation: new FormControl(this.clientModel.occupation, [Validators.required]),
+            email: new FormControl(this.clientModel.email, [Validators.required, Validators.pattern(RegexPatternEnum.emailPattern)]),
+            phone: new FormControl(this.clientModel.phone, [Validators.required, Validators.pattern(RegexPatternEnum.numberPattern)]),
+            porpose: new FormControl(this.clientModel.purpose, []),
+            occupation: new FormControl(this.clientModel.occupation, []),
             about: new FormControl(this.clientModel.about, [Validators.pattern(RegexPatternEnum.stringPattern)]),
             isPrivate: new FormControl(this.clientModel.isPrivate = false, [Validators.required]),
         });

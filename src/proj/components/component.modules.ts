@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDirectiveModule } from '../directives/CustomDirectiveModule';
-import { DashboardHttpService } from '../services/httpServices/dashboardServices/http-dashboard-service';
+import { RouteGaurd } from '../router/route-gaurd';
+import { AuthInterceptor } from '../services/httpInterceptor/authInterceptor';
+import { AccountHttpService, DashboardHttpService, IdentityService } from '../services/httpServices/http-services';
 import { LinksComponent } from './account/links.component';
 import { SigninComponent } from './account/signin.component';
 import { SignupComponent } from './account/signup.component';
@@ -25,6 +28,7 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
     imports: [
         CommonModule,
         HttpModule,
+        HttpClientModule,
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
@@ -63,7 +67,15 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientListTableComponent,
     ],
     providers: [
+        AccountHttpService,
         DashboardHttpService,
+        IdentityService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+        RouteGaurd,
     ],
 })
 export class ComponentModules {

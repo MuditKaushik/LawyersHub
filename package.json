@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && concurrently \"node ./app/server/server.js\" \"tsc -w\" \"gulp\"",
+    "start": "concurrently \"node ./app/server/server.js\" \"tsc -w\" \"gulp\"",
     "launch": "node ./app/server/server.js",
     "build": "tsc && concurrently \"gulp build\"",
     "tslint": "./node_modules/.bin/tslint --init"
@@ -42,7 +42,7 @@
     "jquery": "^3.2.1",
     "popper.js": "^1.12.9",
     "reflect-metadata": "^0.1.10",
-    "rxjs": "^5.5.2",
+    "rxjs": "5.5.2",
     "systemjs": "^0.20.19",
     "zone.js": "^0.8.18"
   },
