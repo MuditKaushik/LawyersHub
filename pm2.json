@@ -1,0 +1,13 @@
+{
+    "apps": [
+        {
+            "name": "lawyerhub_web",
+            "script": "./app/server/server.js",
+            "watch": true,
+            "instances": 1,
+            "env": {
+                "NODE_ENV": "development"
+            }
+        }
+    ]
+}

@@ -4,3 +4,4 @@
 /app
 /dist
 /gulpfile.js
+/config/development.json
