@@ -1,0 +1,14 @@
+<div class="row mt-4">
+    <div class="col-md-10 offset-md-1">
+        <div class="media">
+            <img class="align-self-start" [src]="image" alt="..." height="150" width="150" />
+            <div class="media-body ml-3">
+                <div [ngClass]="alertType" role="alert">
+                    <h4 class="alert-heading">{{accessType}}</h4>
+                    <p>{{reason}}</p>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

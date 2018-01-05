@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccessDeniedComponent } from '../components/account/access-denied.component';
 import { SignupComponent } from '../components/account/signup.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { HomeComponent } from '../components/home/home.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'settings', canActivate: [RouteGaurd], component: SettingsComponents },
     { path: 'signup', component: SignupComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'access_denied/:code', component: AccessDeniedComponent },
     { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 

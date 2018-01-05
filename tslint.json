@@ -49,7 +49,8 @@
         "allow-trailing-underscore"
       ],
       "severity": "warning"
-    }
+    },
+    "no-string-literal": false
   },
   "rulesDirectory": []
 }
