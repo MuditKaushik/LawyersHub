@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as httpStatus from 'http-status-codes';
 import { IdentityModel, ISigninModel } from '../../models/data-models';
 import { AccountHttpService, IdentityService } from '../../services/httpServices/http-services';
@@ -13,7 +14,10 @@ export class SigninComponent implements OnInit {
     @Output('authUser') authUser = new EventEmitter<IdentityModel>();
     signinForm: FormGroup;
     private signinModel: ISigninModel = {} as ISigninModel;
-    constructor(private fb: FormBuilder, private accountHttp: AccountHttpService, private identity: IdentityService) { }
+    constructor(private fb: FormBuilder,
+        private accountHttp: AccountHttpService,
+        private identity: IdentityService,
+        private route: Router) { }
     ngOnInit(): void {
         this.signinForm = this.createSigninForm();
     }
@@ -23,6 +27,7 @@ export class SigninComponent implements OnInit {
                 if (result.status === httpStatus.OK) {
                     this.identity.setUserIdentity(result.body as IdentityModel);
                     this.authUser.emit(result.body as IdentityModel);
+                    this.route.navigate(['/home']);
                 }
             }, (err) => {
                 console.log('signin result error', err);

@@ -3,7 +3,7 @@
         <img [src]="logo" width="30" height="30" class="d-inline-block align-top" alt=""> LawyersHub
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
-        aria-label="Toggle navigation">
+        aria-label="Toggle navigation" *ngIf="isAuthUser">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="menu" *ngIf="isAuthUser">

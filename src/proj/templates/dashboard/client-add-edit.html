@@ -82,18 +82,16 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-5">
+                    <div class="col-4">
                         <label for="">Client</label>
                         <div class="w-100"></div>
-                        <label class="custom-control custom-radio">
+                        <label class="custom-control custom-radio custom-control-inline">
                             <input name="clientType" type="radio" class="custom-control-input" [checked]="isPrivate" />
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Is Private</span>
+                            <span class="custom-control-label">Is Private</span>
                         </label>
-                        <label class="custom-control custom-radio">
+                        <label class="custom-control custom-radio custom-control-inline">
                             <input name="clientType" type="radio" class="custom-control-input" [checked]="!isPrivate" />
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Is Public</span>
+                            <span class="custom-control-label">Is Public</span>
                         </label>
                     </div>
                     <div class="col-4">
@@ -102,7 +100,7 @@
                             <option value="">Select</option>
                         </select>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="">Occupation</label>
                         <select class="form-control">
                             <option value="">Select</option>

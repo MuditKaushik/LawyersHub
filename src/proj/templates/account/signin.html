@@ -1,12 +1,12 @@
 <form [formGroup]="signinForm" class="form-inline my-2 my-lg-0" (ngSubmit)="signin(signinForm)" novalidate>
     <div class="form-group">
-        <input class="form-control mr-sm-2" type="text" placeholder="Username or Email" aria-label="username" formControlName="username"
+        <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Username or Email" aria-label="username" formControlName="username"
         />
     </div>
     <div class="form-group">
-        <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="password" formControlName="password"
+        <input class="form-control form-control-sm mr-sm-2" type="password" placeholder="Password" aria-label="password" formControlName="password"
         />
     </div>
-    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Login</button>
-    <a class="btn btn-outline-secondary ml-2" [routerLink]="['/signup']">New user</a>
+    <button class="btn btn-outline-primary btn-sm my-2 my-sm-0" type="submit">Login</button>
+    <a class="btn btn-outline-secondary btn-sm ml-2" [routerLink]="['/signup']">New user</a>
 </form>
