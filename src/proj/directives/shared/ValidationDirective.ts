@@ -7,13 +7,12 @@ import { ErrorMessagesEnum, ErrorTypesEnum } from '../../services/Utility/enumUt
 })
 export class ValidationDirective {
     @Input('validator') errorMessage: string;
-    private element: HTMLElement;
+    private element: HTMLInputElement;
     private errorMsgDiv: Element | null;
     constructor(private elementRef: ElementRef, private control: NgControl) {
         this.element = this.elementRef.nativeElement;
-        this.errorMsgDiv = this.element.nextElementSibling;
     }
-    @HostListener('input', ['$event.target']) getErrors(inputElement: HTMLElement): void {
+    @HostListener('input', ['$event.target']) getErrors(inputElement: HTMLInputElement): void {
         if (this.control.errors) {
             this.addErrorClassOnElement(true);
             for (let error of Object.keys(this.control.errors)) {
@@ -21,19 +20,19 @@ export class ValidationDirective {
             }
         } else {
             this.addErrorClassOnElement(false);
-            $(this.element).next().html('');
+            this.removeErrorMessage();
         }
     }
     displayMessage(errortype: string): void {
         switch (errortype) {
             case ErrorTypesEnum.required:
-                $(this.element).next().html(ErrorMessagesEnum.required);
+                this.createErrorMessage(ErrorMessagesEnum.required);
                 break;
             case ErrorTypesEnum.pattern:
-                $(this.element).next().html(ErrorMessagesEnum.pattern);
+                this.createErrorMessage(ErrorMessagesEnum.pattern);
                 break;
             case ErrorTypesEnum.email:
-                $(this.element).next().html(ErrorMessagesEnum.email);
+                this.createErrorMessage(ErrorMessagesEnum.email);
                 break;
             default: break;
         }
@@ -46,5 +45,19 @@ export class ValidationDirective {
     }
     hasError(): boolean {
         return (this.control.errors) ? true : false;
+    }
+    createErrorMessage(message: string): void {
+        let parentElement = this.element.parentElement as HTMLDivElement;
+        let divNode = document.createElement('div');
+        divNode.classList.add('invalid-feedback');
+        divNode.innerHTML = (this.element instanceof HTMLInputElement) ?
+            `${this.element.placeholder} ${message}` : message;
+        parentElement.appendChild(divNode);
+    }
+    removeErrorMessage(): void {
+        let parentElement = this.element.parentElement as HTMLDivElement;
+        Object.values(parentElement.children).forEach((child: Element) => {
+            (child instanceof HTMLDivElement) ? parentElement.removeChild(child) : '';
+        });
     }
 }

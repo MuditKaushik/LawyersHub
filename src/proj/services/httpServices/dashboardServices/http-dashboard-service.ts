@@ -11,7 +11,8 @@ export class DashboardHttpService {
     constructor(private http: HttpClient) {
     }
     getClientList(userId: string): Observable<HttpResponse<any>> {
-        return this.http.get(`${DashboardEnum.clientEndpoints}/${userId}`, { observe: 'response' }).map((data) => {
+        return this.http.get(`${DashboardEnum.clientEndpoints}/${userId}`, { observe: 'response' })
+        .map((data) => {
             return data;
         });
     }

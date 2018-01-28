@@ -1,3 +1,45 @@
 <div class="row mt-4">
-    
+    <div class="col-4 offset-md-4">
+        <div class="card">
+            <div class="card-header">
+                Register
+            </div>
+            <div class="card-body">
+                <form [formGroup]="signupForm" (ngSubmit)="addUser(signupForm)" novalidate>
+                    <div class="form-group row">
+                        <div class="input-group col">
+                            <input type="text" formControlName="firstName" class="form-control" placeholder="First Name" validator />
+                            <input type="text" formControlName="middleName" class="form-control" placeholder="Middle Name" />
+                            <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name" validator />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="input-group col">
+                            <input type="text" formControlName="email" class="form-control" placeholder="Email address" validator />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="input-group col">
+                            <select name="" id="" class="form-control" formControlName="dialCode" validator>
+                                <option value="0">Select dial code</option>
+                                <option *ngFor="let country of countryList" [value]="country.dial_code">({{country.dial_code}}) - {{country.name}}</option>
+                            </select>
+                            <input type="text" formControlName="phone" class="form-control" placeholder="Phone" validator/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="input-group col">
+                            <input type="text" formControlName="username" class="form-control" placeholder="Username" validator />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="input-group col">
+                            <input type="password" formControlName="password" class="form-control" placeholder="Password" validator />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

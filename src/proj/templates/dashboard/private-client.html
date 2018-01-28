@@ -38,4 +38,10 @@
             <hr/>
         </div>
     </li>
+    <li class="media" *ngIf="clientCount == 0">
+        <div class="media-body" [ngClass]="alert.type" role="alert">
+            <i class="fa fa-exclamation-circle fa-fw" aria-hidden="true"></i>
+            {{alert.message}}
+        </div>
+    </li>
 </ul>

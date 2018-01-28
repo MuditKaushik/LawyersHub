@@ -13,3 +13,13 @@ export enum ErrorTypesEnum {
     pattern = 'pattern',
     email = 'email',
 }
+export enum AlertTypeEnum {
+    primaryType = 'alert alert-primary',
+    secondaryType = 'alert alert-secondary',
+    successType = 'alert alert-success',
+    dangerType = 'alert alert-danger',
+    warningType = 'alert alert-warning',
+    infoType = 'alert alert-info',
+    lightType = 'alert alert-light',
+    darkType = 'alert alert-dark'
+}
