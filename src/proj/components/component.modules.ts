@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDirectiveModule } from '../directives/CustomDirectiveModule';
 import { RouteGaurd } from '../router/route-gaurd';
 import { AuthInterceptor } from '../services/httpInterceptor/authInterceptor';
-import { AccountHttpService, DashboardHttpService, IdentityService } from '../services/httpServices/http-services';
+import { AccountHttpService, DashboardHttpService, IdentityService, CommonServices } from '../services/httpServices/http-services';
 import { AccessDeniedComponent } from './account/access-denied.component';
 import { LinksComponent } from './account/links.component';
 import { SigninComponent } from './account/signin.component';
@@ -72,6 +72,7 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
     providers: [
         AccountHttpService,
         DashboardHttpService,
+        CommonServices,
         IdentityService,
         {
             provide: HTTP_INTERCEPTORS,

@@ -3,7 +3,7 @@ import * as httpStatus from 'http-status-codes';
 import { GetTemplate } from '../../services/Utility/pathUtil';
 import { IDropDownModel, ISignupModel } from '../../models/data-models';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { AccountHttpService } from '../../services/httpServices/http-services';
+import { AccountHttpService, CommonServices } from '../../services/httpServices/http-services';
 
 @Component({
     templateUrl: GetTemplate('account', 'signup.html'),
@@ -12,11 +12,13 @@ export class SignupComponent implements OnInit {
     signupForm: FormGroup;
     countryList: any
     signupModel: ISignupModel = {} as ISignupModel;
-    constructor(private fb: FormBuilder, private accountService: AccountHttpService) {
+    constructor(private fb: FormBuilder,
+        private accountService: AccountHttpService,
+        private commonService: CommonServices) {
         this.signupForm = this.createSignupform();
     }
     ngOnInit(): void {
-        this.accountService.getcountries().subscribe((result: any) => {
+        this.commonService.getcountries().subscribe((result: any) => {
             this.countryList = result.country;
         });
     }

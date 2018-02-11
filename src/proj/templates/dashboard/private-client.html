@@ -5,24 +5,22 @@
 <hr/>
 <loader *ngIf="showloader"></loader>
 <ul class="list-unstyled">
-    <li class="media mt-2" *ngFor="let person of personList">
+    <li class="media mt-2" *ngFor="let person of personList;let i=index">
         <img class="mr-3 align-self-start rounded-circle" [src]="image" width="75" height="75" alt="client image" />
         <div class="media-body">
-            <h5 class="mt-0 mb-1 client-name" data-toggle="collapse" attr.data-target='#{{person.UserName}}' aria-expanded="false" aria-controls="detail">
-                {{person.FirstName}} {{person.LastName}} ({{person.UserName}})
+            <h5 class="mt-0 mb-1 client-name" data-toggle="collapse" attr.data-target='#person{{i}}' aria-expanded="false" aria-controls="detail">
+                {{person.firstName}} {{person.middleName}} {{person.lastName}}
                 <i class="fa fa-info-circle fa-fw" placement="right" ngbTooltip="See client details."></i>
             </h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-            felis in faucibus.
-            <div class="collapse mt-2" attr.id="{{person.UserName}}">
+            {{person.about}}
+            <div class="collapse mt-2" attr.id="person{{i}}">
                 <ngb-tabset>
                     <ngb-tab>
                         <ng-template ngbTabTitle="">
                             <i class="fa fa-edit fa-fw"></i> Edit
                         </ng-template>
                         <ng-template ngbTabContent="">
-                            <client-add-edit [addClient]="false"></client-add-edit>
+                            <client-add-edit [client]="person" [addClient]="false"></client-add-edit>
                         </ng-template>
                     </ngb-tab>
                     <ngb-tab>
@@ -38,7 +36,7 @@
             <hr/>
         </div>
     </li>
-    <li class="media" *ngIf="clientCount == 0">
+    <li class="media" *ngIf="alert.message">
         <div class="media-body" [ngClass]="alert.type" role="alert">
             <i class="fa fa-exclamation-circle fa-fw" aria-hidden="true"></i>
             {{alert.message}}

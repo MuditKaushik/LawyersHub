@@ -4,16 +4,28 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { DashboardEnum } from '../httpServicesUtility/httpEndpontsEnum';
+import { DashboardEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
+import { IdentityService } from '../accountSevices/Identity-service';
+import { IClientModel } from '../../../models/data-models';
 
 @Injectable()
 export class DashboardHttpService {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private identity: IdentityService) {
     }
     getClientList(userId: string): Observable<HttpResponse<any>> {
-        return this.http.get(`${DashboardEnum.clientEndpoints}/${userId}`, { observe: 'response' })
-        .map((data) => {
-            return data;
+        return this.http.get(`${DashboardEndpoints.getClient}/${this.identity.getIdentity().userid}/`, { observe: 'response' })
+            .map((data) => {
+                return data;
+            });
+    }
+    addClient(client: IClientModel): Observable<HttpResponse<any>> {
+        return this.http.post<any>(
+            `${DashboardEndpoints.addClient}/${this.identity.getIdentity().userid}`,
+            client,
+            { observe: 'response' }
+        ).map((result: HttpResponse<any>) => {
+            return result;
         });
+
     }
 }

@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IClientModel } from '../../models/data-models';
+import { IClientModel, IDropDownModel } from '../../models/data-models';
 import { RegexPatternEnum } from '../../services/Utility/enumUtil';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
+import { DashboardHttpService, CommonServices } from '../../services/httpServices/http-services';
+import * as httpStatus from 'http-status-codes';
 
 @Component({
     selector: 'client-add-edit',
@@ -10,23 +12,63 @@ import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 })
 export class ClientAddEditComponent implements OnInit {
     @Input('addClient') addClient: boolean;
+    @Input('client') client: IClientModel
 
     image: string = GetImages('lawyer.png');
     clientAddEditForm: FormGroup;
     clientModel: IClientModel = {} as IClientModel;
     btn_label: string;
-    constructor(private formBuilder: FormBuilder) {
+    stateList: Array<IDropDownModel> = new Array<IDropDownModel>();
+    cityList: Array<IDropDownModel>;
+    selectedState: IDropDownModel = {} as IDropDownModel;
+    selectedCity: IDropDownModel = {} as IDropDownModel;
+
+    constructor(private formBuilder: FormBuilder,
+        private dashboarHttp: DashboardHttpService,
+        private commonService: CommonServices) {
     }
 
     ngOnInit(): void {
+        if (typeof this.client !== 'undefined') {
+            this.clientModel = this.client;
+            this.selectedState = { id: this.clientModel.state, name: this.clientModel.state };
+            this.selectedCity = { id: this.clientModel.city, name: this.clientModel.city };
+            this.getCities(this.selectedState.id);
+        }
         this.btn_label = (this.addClient) ? 'Submit' : 'Update';
+        this.commonService.getStates().subscribe((result) => {
+            if (result.status === httpStatus.OK && result.body !== null) {
+                result.body.forEach((state: string) => {
+                    this.stateList.push({ id: state, name: state });
+                });
+            }
+        });
         this.createForm();
     }
     feild_Validation(): void { }
     add_update_client(model: FormGroup): void {
-        console.log(model);
+        if (model.valid) {
+            this.clientModel = <IClientModel>model.value;
+            this.dashboarHttp.addClient(this.clientModel)
+                .subscribe((result) => {
+                    console.log(result);
+                });
+        }
     }
-
+    getCities(state: string): void {
+        if (state) {
+            this.cityList = new Array<IDropDownModel>();
+            this.commonService.getCities(state).subscribe((result) => {
+                if (result.status === httpStatus.OK && result.body !== null) {
+                    result.body.forEach((city: string) => {
+                        this.cityList.push({ id: city, name: city });
+                    });
+                }
+            });
+        } else {
+            this.cityList = [];
+        }
+    }
     private createForm(): FormGroup {
         return this.clientAddEditForm = this.formBuilder.group({
             firstName: new FormControl(this.clientModel.firstName, [Validators.required, Validators.pattern(RegexPatternEnum.stringPattern)]),
@@ -43,7 +85,7 @@ export class ClientAddEditComponent implements OnInit {
             porpose: new FormControl(this.clientModel.purpose, []),
             occupation: new FormControl(this.clientModel.occupation, []),
             about: new FormControl(this.clientModel.about, [Validators.pattern(RegexPatternEnum.stringPattern)]),
-            isPrivate: new FormControl(this.clientModel.isPrivate = false, [Validators.required]),
+            isprivate: new FormControl(this.clientModel.isprivate, [Validators.required]),
         });
     }
 }

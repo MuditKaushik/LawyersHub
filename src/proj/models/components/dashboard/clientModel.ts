@@ -1,10 +1,12 @@
 export interface IClientModel {
-    id: string;
+    clientid: string;
+    userid: string;
     firstName: string;
     middleName: string;
     lastName: string;
     address1: string;
     address2: string;
+    country: string;
     state: string;
     district: string;
     city: string;
@@ -14,5 +16,5 @@ export interface IClientModel {
     purpose: string;
     occupation: string;
     about: string;
-    isPrivate: boolean;
+    isprivate: boolean;
 }

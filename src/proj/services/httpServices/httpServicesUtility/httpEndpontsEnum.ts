@@ -1,9 +1,13 @@
-export enum AccountEnums {
-    tokenEndpoints = 'http://localhost:1802/api/v1/account/login',
-    countriesEndpoint = 'http://localhost:1802/api/v1/account/getcountry',
-    statesAndCitiesEndpoint = 'http://localhost:1802/api/v1/account/getstatescity',
-    addUserEndPoint = 'http://localhost:1802/api/v1/account/signup'
+export enum AccountEndpoints {
+    token = 'http://localhost:1802/api/v1/account/login',
+    addUser = 'http://localhost:1802/api/v1/account/signup',
 }
-export enum DashboardEnum {
-    clientEndpoints = 'http://localhost:1802/api/v1/authuser/clients',
+export enum CommonEndpoints {
+    getCountries = 'http://localhost:1802/api/common/getcountry',
+    getStates = 'http://localhost:1802/api/common/getstates',
+    getCities = 'http://localhost:1802/api/common/getcities',
+}
+export enum DashboardEndpoints {
+    getClient = 'http://localhost:1802/api/v1/authuser/getclients',
+    addClient = 'http://localhost:1802/api/v1/authuser/addclient',
 }

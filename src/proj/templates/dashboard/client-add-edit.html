@@ -40,15 +40,21 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-3">
-                                <input type="text" class="form-control" placeholder="State" formControlName="state" validator />
+                                <select name="states" class="form-control" id="state" formControlName="state" (change)="getCities($event.target.value);">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let state of stateList" [selected]="selectedState === state" [value]="state.id">{{state.name}}</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="city" class="form-control" id="city" formControlName="city">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let city of cityList" [selected]="selectedCity === city" [value]="city.id">{{city.name}}</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" placeholder="District" formControlName="district" validator />
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" placeholder="City" formControlName="city" validator />
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-3">
@@ -86,11 +92,11 @@
                         <label for="">Client</label>
                         <div class="w-100"></div>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input name="clientType" type="radio" class="custom-control-input" [checked]="isPrivate" />
+                            <input name="isprivate" [value]="true" formControlName="isprivate" type="radio" class="custom-control-input" />
                             <span class="custom-control-label">Is Private</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input name="clientType" type="radio" class="custom-control-input" [checked]="!isPrivate" />
+                            <input name="isprivate" [value]="false" formControlName="isprivate" type="radio" class="custom-control-input" />
                             <span class="custom-control-label">Is Public</span>
                         </label>
                     </div>
@@ -114,7 +120,7 @@
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary">{{btn_label}}</button>
+                <button type="submit" class="btn btn-primary">{{btn_label}}</button>
             </div>
             <div class="col-4 text-center">
                 <div class="row form-group">

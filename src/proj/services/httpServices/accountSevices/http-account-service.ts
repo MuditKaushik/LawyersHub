@@ -5,25 +5,19 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { ISigninModel, IdentityModel, ISignupModel } from '../../../models/data-models';
-import { AccountEnums } from '../httpServicesUtility/httpEndpontsEnum';
+import { AccountEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
 
 @Injectable()
 export class AccountHttpService {
     constructor(private http: HttpClient) { }
     userSignin(login: ISigninModel): Observable<HttpResponse<IdentityModel>> {
-        return this.http.post<IdentityModel>(AccountEnums.tokenEndpoints, login, { observe: 'response' })
+        return this.http.post<IdentityModel>(AccountEndpoints.token, login, { observe: 'response' })
             .map((result: HttpResponse<IdentityModel>) => {
                 return result;
             });
     }
-    getcountries(): Observable<HttpResponse<any>> {
-        return this.http.get(AccountEnums.countriesEndpoint, { observe: 'response' })
-            .map((result: HttpResponse<any>) => {
-                return (result.status === httpStatus.OK) ? result.body : [];
-            });
-    }
     createUser(userAdd: ISignupModel): Observable<HttpResponse<number>> {
-        return this.http.post<number>(AccountEnums.addUserEndPoint, userAdd, { observe: 'response' })
+        return this.http.post<number>(AccountEndpoints.addUser, userAdd, { observe: 'response' })
             .map((result: HttpResponse<number>) => {
                 return result;
             });
