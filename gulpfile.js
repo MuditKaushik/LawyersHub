@@ -11,25 +11,22 @@ var paths;
     paths["images_dest"] = "./app/proj/images/";
     paths["scss_dest"] = "./app/proj/scss/";
 })(paths || (paths = {}));
-gulp.task('copy_templates', function () {
+function CopyTemplate() {
     return gulp.src(paths.template_src).pipe(gulp.dest(paths.template_dest));
-});
-gulp.task('copy_images', function () {
+}
+function CopyImages() {
     return gulp.src(paths.images_src).pipe(gulp.dest(paths.images_dest));
-});
-gulp.task('copy_scss', function () {
+}
+function CopyScss() {
     return gulp.src(paths.scss_src).pipe(gulp.dest(paths.scss_dest));
-});
+}
+gulp.task('copy_templates', CopyTemplate);
+gulp.task('copy_images', CopyImages);
+gulp.task('copy_scss', CopyScss);
 gulp.task('watcher', function () {
-    gulp.watch(paths.template_src, function () {
-        return gulp.src(paths.template_src).pipe(gulp.dest(paths.template_dest));
-    });
-    gulp.watch(paths.images_src, function () {
-        return gulp.src(paths.images_src).pipe(gulp.dest(paths.images_dest));
-    });
-    gulp.watch(paths.scss_src, function () {
-        return gulp.src(paths.scss_src).pipe(gulp.dest(paths.scss_dest));
-    });
+    gulp.watch(paths.template_src, CopyTemplate);
+    gulp.watch(paths.images_src, CopyImages);
+    gulp.watch(paths.scss_src, CopyScss);
 });
 gulp.task('build', function () {
     return run_sequence(['copy_templates', 'copy_images', 'copy_scss']);

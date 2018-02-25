@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import * as httpStatus from 'http-status-codes';
 import { GetTemplate } from '../../services/Utility/pathUtil';
-import { IDropDownModel, ISignupModel } from '../../models/data-models';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AlertTypeEnum, ErrorMessagesEnum, SuccessMessageEnum } from '../../services/Utility/enumUtil';
+import { IDropDownModel, ISignupModel, IAlertModel, IResponseBody } from '../../models/data-models';
 import { AccountHttpService, CommonServices } from '../../services/httpServices/http-services';
 
 @Component({
     templateUrl: GetTemplate('account', 'signup.html'),
 })
 export class SignupComponent implements OnInit {
+    @ViewChild('submit') submitBtn: HTMLButtonElement;
     signupForm: FormGroup;
     countryList: any
     signupModel: ISignupModel = {} as ISignupModel;
+    alert: IAlertModel = {} as IAlertModel;
     constructor(private fb: FormBuilder,
         private accountService: AccountHttpService,
         private commonService: CommonServices) {
@@ -21,16 +24,25 @@ export class SignupComponent implements OnInit {
         this.commonService.getcountries().subscribe((result: any) => {
             this.countryList = result.country;
         });
+        console.log(this.submitBtn);
     }
     addUser(formValue: FormGroup): void {
         if (formValue.valid) {
             this.signupModel = formValue.value;
             this.signupModel.phone = `${this.signupModel.dialCode}-${this.signupModel.phone}`;
             this.accountService.createUser(this.signupModel).subscribe((result) => {
-                if (result.status === httpStatus.CREATED) {
-                    //log msg to create user.
+                if (result.status === httpStatus.OK && (result.body as IResponseBody<boolean>).result) {
+                    this.alert = {
+                        type: AlertTypeEnum.successType,
+                        message: SuccessMessageEnum.createUserSuccess,
+                        iconClass: 'fa-thumbs-o-up'
+                    };
                 } else {
-                    // log msg not created.
+                    this.alert = {
+                        type: AlertTypeEnum.infoType,
+                        message: ErrorMessagesEnum.USEREXISTS,
+                        iconClass: 'fa-thumbs-o-down'
+                    };
                 }
             });
         }

@@ -4,21 +4,21 @@ import * as httpStatus from 'http-status-codes';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { ISigninModel, IdentityModel, ISignupModel } from '../../../models/data-models';
+import { ISigninModel, IdentityModel, ISignupModel, IResponseBody } from '../../../models/data-models';
 import { AccountEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
 
 @Injectable()
 export class AccountHttpService {
     constructor(private http: HttpClient) { }
-    userSignin(login: ISigninModel): Observable<HttpResponse<IdentityModel>> {
-        return this.http.post<IdentityModel>(AccountEndpoints.token, login, { observe: 'response' })
-            .map((result: HttpResponse<IdentityModel>) => {
+    userSignin(login: ISigninModel): Observable<HttpResponse<IResponseBody<IdentityModel>>> {
+        return this.http.post(AccountEndpoints.token, login, { observe: 'response' })
+            .map((result: HttpResponse<IResponseBody<IdentityModel>>) => {
                 return result;
             });
     }
-    createUser(userAdd: ISignupModel): Observable<HttpResponse<number>> {
-        return this.http.post<number>(AccountEndpoints.addUser, userAdd, { observe: 'response' })
-            .map((result: HttpResponse<number>) => {
+    createUser(userAdd: ISignupModel): Observable<HttpResponse<IResponseBody<boolean>>> {
+        return this.http.post(AccountEndpoints.addUser, userAdd, { observe: 'response' })
+            .map((result: HttpResponse<IResponseBody<boolean>>) => {
                 return result;
             });
     }

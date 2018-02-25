@@ -7,6 +7,7 @@ export enum ErrorMessagesEnum {
     required = 'field is required.',
     pattern = 'field pattern is not correct.',
     email = 'Invalid email address.',
+    USEREXISTS = 'User detail already exists.',
 }
 export enum ErrorTypesEnum {
     required = 'required',
@@ -22,4 +23,8 @@ export enum AlertTypeEnum {
     infoType = 'alert alert-info',
     lightType = 'alert alert-light',
     darkType = 'alert alert-dark'
+}
+export enum SuccessMessageEnum {
+    createUserSuccess = 'User created successfully.',
+    loading = 'loading...',
 }

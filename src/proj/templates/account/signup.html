@@ -5,6 +5,9 @@
                 Register
             </div>
             <div class="card-body">
+                <div [ngClass]="alert.type" *ngIf="alert.message">
+                    <i class="fa {{alert.iconClass}} fa fa-fw" aria-hidden="true"></i> {{alert.message}}
+                </div>
                 <form [formGroup]="signupForm" (ngSubmit)="addUser(signupForm)" novalidate>
                     <div class="form-group row">
                         <div class="input-group col">
@@ -49,7 +52,7 @@
                             <input type="password" formControlName="password" class="form-control" placeholder="Password" validator />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" #submit class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>

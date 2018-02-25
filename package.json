@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"node ./app/server/server.js\" \"tsc -w\" \"gulp\"",
+    "start": "tsc && concurrently \"gulp\" \"npm run launch\" \"tsc -w\"",
     "launch": "node ./app/server/server.js",
     "build": "tsc && concurrently \"gulp build\"",
     "tslint": "./node_modules/.bin/tslint --init"
