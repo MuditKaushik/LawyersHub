@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as httpStatus from 'http-status-codes';
+//import httpStatus = require('http-status-codes');
 import { IdentityModel, ISigninModel, IResponseBody } from '../../models/data-models';
 import { AccountHttpService, IdentityService } from '../../services/httpServices/http-services';
 import { GetTemplate } from '../../services/Utility/pathUtil';
@@ -24,7 +24,7 @@ export class SigninComponent implements OnInit {
     signin(model: FormGroup): void {
         if (model.valid) {
             this.accountHttp.userSignin(model.value as ISigninModel).subscribe((result) => {
-                if (result.status === httpStatus.OK && result.body !== null) {
+                if (result.status === 200 && result.body !== null) {
                     let identity: IResponseBody<IdentityModel> = result.body;
                     this.identity.setUserIdentity(identity.result);
                     this.authUser.emit(identity.result);

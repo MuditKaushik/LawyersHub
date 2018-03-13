@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import * as httpStatus from 'http-status-codes';
+import httpStatus = require('http-status-codes');
 import { GetTemplate } from '../../services/Utility/pathUtil';
 import { AlertTypeEnum, ErrorMessagesEnum, SuccessMessageEnum } from '../../services/Utility/enumUtil';
 import { IDropDownModel, ISignupModel, IAlertModel, IResponseBody } from '../../models/data-models';

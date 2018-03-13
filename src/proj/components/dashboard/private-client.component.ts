@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as httpStatus from 'http-status-codes';
-import { IAlertModel, IClientModel } from '../../models/data-models';
+import httpStatus = require('http-status-codes');
+import { IAlertModel, IClientModel, IResponseBody } from '../../models/data-models';
 import { DashboardHttpService, IdentityService } from '../../services/httpServices/http-services';
 import { GetImages, GetStyle, GetTemplate } from '../../services/Utility/pathUtil';
 import { AlertTypeEnum } from '../../services/Utility/enumUtil';
@@ -23,21 +23,18 @@ export class PrivateClientComponent implements OnInit {
     ngOnInit(): void {
         this.showloader = true;
         this.dashboardHttp.getClientList(this.identity.getIdentity().userid).subscribe((data) => {
-            if (data.status === httpStatus.OK) {
-                this.clientCount = data.body.length;
-                if (this.clientCount <= 0) {
-                    this.alert.type = AlertTypeEnum.infoType;
-                    this.alert.message = 'No client found.';
-                } else {
-                    this.personList = data.body;
-                }
+            let response = <IResponseBody<IClientModel[]>>(data.body);
+            if (response.success) {
+                this.clientCount = response.result.length;
+                this.personList = response.result;
+            } else {
+                this.alert.type = AlertTypeEnum.infoType;
+                this.alert.message = <string>response.message;
             }
         }, (err) => {
             this.showloader = false;
             this.alert.type = AlertTypeEnum.dangerType;
             this.alert.message = err.message;
-        }, () => {
-            this.showloader = false;
         });
     }
 }

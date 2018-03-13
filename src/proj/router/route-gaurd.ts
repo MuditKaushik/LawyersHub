@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import * as httpStatus from 'http-status-codes';
+import httpStatus = require('http-status-codes');
 import { IdentityService } from '../services/httpServices/http-services';
 
 @Injectable()

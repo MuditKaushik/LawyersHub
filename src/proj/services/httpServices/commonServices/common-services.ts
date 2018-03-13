@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import * as httpStatus from 'http-status-codes';
+// import httpStatus = require('http-status-codes');
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -12,7 +12,7 @@ export class CommonServices {
     getcountries(): Observable<HttpResponse<any>> {
         return this.http.get(CommonEndpoints.getCountries, { observe: 'response' })
             .map((result: HttpResponse<any>) => {
-                return (result.status === httpStatus.OK) ? result.body : [];
+                return (result.status === 200) ? result.body : [];
             });
     }
     getStates(): Observable<HttpResponse<Array<string>>> {

@@ -62,6 +62,7 @@
       "express",
       "gulp",
       "http-status-codes",
+      "jasmine",
       "jquery",
       "node",
       "run-sequence"

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import * as httpStatus from 'http-status-codes';
+import httpStatus = require('http-status-codes');
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({

@@ -4,7 +4,7 @@ import { IClientModel, IDropDownModel } from '../../models/data-models';
 import { RegexPatternEnum } from '../../services/Utility/enumUtil';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 import { DashboardHttpService, CommonServices } from '../../services/httpServices/http-services';
-import * as httpStatus from 'http-status-codes';
+import httpStatus = require('http-status-codes');
 
 @Component({
     selector: 'client-add-edit',

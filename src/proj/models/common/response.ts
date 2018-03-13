@@ -1,4 +1,5 @@
 export interface IResponseBody<T> {
-    complete: boolean,
+    message?: string,
+    success: boolean,
     result: T
 }
