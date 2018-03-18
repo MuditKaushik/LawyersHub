@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//import httpStatus = require('http-status-codes');
+import httpStatus = require('http-status-codes');
 import { IdentityModel, ISigninModel, IResponseBody } from '../../models/data-models';
 import { AccountHttpService, IdentityService } from '../../services/httpServices/http-services';
 import { GetTemplate } from '../../services/Utility/pathUtil';

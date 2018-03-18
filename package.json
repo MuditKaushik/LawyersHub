@@ -4,7 +4,7 @@
   "description": "lawyer connect point",
   "main": "index.js",
   "scripts": {
-    "test": "karma start",
+    "test": "tsc && karma start karma.conf.js",
     "start": "tsc && concurrently \"gulp\" \"npm run launch\" \"tsc -w\"",
     "launch": "node ./app/server/server.js",
     "build": "tsc && concurrently \"gulp build\"",
