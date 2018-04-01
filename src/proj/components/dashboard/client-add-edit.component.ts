@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IClientModel, IDropDownModel } from '../../models/data-models';
-import { RegexPatternEnum } from '../../services/Utility/enumUtil';
+import { IClientModel, IDropDownModel, IResponseBody } from '../../models/data-models';
+import { RegexPatternEnum, AlertTypeEnum } from '../../services/Utility/enumUtil';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
-import { DashboardHttpService, CommonServices } from '../../services/httpServices/http-services';
+import { DashboardHttpService, CommonServices, MessageService } from '../../services/httpServices/http-services';
 import httpStatus = require('http-status-codes');
 
 @Component({
@@ -25,7 +25,8 @@ export class ClientAddEditComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private dashboarHttp: DashboardHttpService,
-        private commonService: CommonServices) {
+        private commonService: CommonServices,
+        private messageService: MessageService) {
     }
 
     ngOnInit(): void {
@@ -51,7 +52,14 @@ export class ClientAddEditComponent implements OnInit {
             this.clientModel = <IClientModel>model.value;
             this.dashboarHttp.addClient(this.clientModel)
                 .subscribe((result) => {
-                    console.log(result);
+                    let response = result.body as IResponseBody<boolean>;
+                    if (response.success) {
+                        this.messageService.addMessage(AlertTypeEnum.successType,
+                            `${this.clientModel.firstName} ${this.clientModel.middleName} ${this.clientModel.lastName} added successfully.`,
+                            null, true);
+                    } else {
+                        this.messageService.addMessage(AlertTypeEnum.successType, 'Client unable added.', null, true);
+                    }
                 });
         }
     }

@@ -2,14 +2,15 @@
 exports.__esModule = true;
 var gulp = require("gulp");
 var run_sequence = require("run-sequence");
+var gulp_sass = require("gulp-sass");
 var paths;
 (function (paths) {
     paths["template_src"] = "./src/proj/templates/**/*";
     paths["images_src"] = "./src/proj/images/**/*";
-    paths["scss_src"] = "./src/proj/scss/**/*";
+    paths["scss_src"] = "./src/proj/scss/styles.scss";
     paths["template_dest"] = "./app/proj/templates/";
     paths["images_dest"] = "./app/proj/images/";
-    paths["scss_dest"] = "./app/proj/scss/";
+    paths["scss_dest"] = "./app/proj/css/";
 })(paths || (paths = {}));
 function CopyTemplate() {
     return gulp.src(paths.template_src).pipe(gulp.dest(paths.template_dest));
@@ -18,7 +19,9 @@ function CopyImages() {
     return gulp.src(paths.images_src).pipe(gulp.dest(paths.images_dest));
 }
 function CopyScss() {
-    return gulp.src(paths.scss_src).pipe(gulp.dest(paths.scss_dest));
+    return gulp.src(paths.scss_src)
+        .pipe(gulp_sass().on('error', gulp_sass.logError))
+        .pipe(gulp.dest(paths.scss_dest));
 }
 gulp.task('copy_templates', CopyTemplate);
 gulp.task('copy_images', CopyImages);

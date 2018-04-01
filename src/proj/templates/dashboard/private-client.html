@@ -1,26 +1,31 @@
-<em class="badge badge-secondary float-right">count {{clientCount}}</em>
+<em class="badge badge-secondary float-right">count {{clients.length}}</em>
 <h3>
     <i class="fa fa-user-secret fa-fw fa-1x"></i> Private Clients
 </h3>
 <hr/>
 <loader *ngIf="showloader"></loader>
 <ul class="list-unstyled">
-    <li class="media mt-2" *ngFor="let person of personList;let i=index">
+    <li class="media">
+        <div class="media-body">
+            <alert-message></alert-message>
+        </div>
+    </li>
+    <li class="media mt-2" *ngFor="let client of clients;let i=index">
         <img class="mr-3 align-self-start rounded-circle" [src]="image" width="75" height="75" alt="client image" />
         <div class="media-body">
-            <h5 class="mt-0 mb-1 client-name" data-toggle="collapse" attr.data-target='#person{{i}}' aria-expanded="false" aria-controls="detail">
-                {{person.firstName}} {{person.middleName}} {{person.lastName}}
+            <h5 class="mt-0 mb-1 client-name" data-toggle="collapse" attr.data-target='#client{{i}}' aria-expanded="false" aria-controls="detail">
+                {{client.firstName}} {{client.middleName}} {{client.lastName}}
                 <i class="fa fa-info-circle fa-fw" placement="right" ngbTooltip="See client details."></i>
             </h5>
-            {{person.about}}
-            <div class="collapse mt-2" attr.id="person{{i}}">
+            {{client.about}}
+            <div class="collapse mt-2" attr.id="client{{i}}">
                 <ngb-tabset>
                     <ngb-tab>
                         <ng-template ngbTabTitle="">
                             <i class="fa fa-edit fa-fw"></i> Edit
                         </ng-template>
                         <ng-template ngbTabContent="">
-                            <client-add-edit [client]="person" [addClient]="false"></client-add-edit>
+                            <client-add-edit [client]="client" [addClient]="false"></client-add-edit>
                         </ng-template>
                     </ngb-tab>
                     <ngb-tab>
@@ -28,18 +33,12 @@
                             <i class="fa fa-trash fa-fw"></i> Remove
                         </ng-template>
                         <ng-template ngbTabContent="">
-                            <client-remove></client-remove>
+                            <client-remove [client]="client" (clientId)="removedClientId($event);"></client-remove>
                         </ng-template>
                     </ngb-tab>
                 </ngb-tabset>
             </div>
             <hr/>
-        </div>
-    </li>
-    <li class="media" *ngIf="alert.message">
-        <div class="media-body" [ngClass]="alert.type" role="alert">
-            <i class="fa fa-exclamation-circle fa-fw" aria-hidden="true"></i>
-            {{alert.message}}
         </div>
     </li>
 </ul>

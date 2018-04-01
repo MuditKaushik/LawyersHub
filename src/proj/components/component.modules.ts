@@ -8,7 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDirectiveModule } from '../directives/CustomDirectiveModule';
 import { RouteGaurd } from '../router/route-gaurd';
 import { AuthInterceptor } from '../services/httpInterceptor/authInterceptor';
-import { AccountHttpService, DashboardHttpService, IdentityService, CommonServices } from '../services/httpServices/http-services';
+import {
+    AccountHttpService,
+    DashboardHttpService,
+    IdentityService,
+    CommonServices,
+    MessageService
+} from '../services/httpServices/http-services';
 import { AccessDeniedComponent } from './account/access-denied.component';
 import { LinksComponent } from './account/links.component';
 import { SigninComponent } from './account/signin.component';
@@ -23,6 +29,7 @@ import { PublicClientComponent } from './dashboard/public-client.component';
 import { SettingsComponents } from './settings/settings.components';
 import { ClientListTableComponent } from './shared/client-list-table.component';
 import { LoaderComponent } from './shared/loader.component';
+import { MessageComponent } from './shared/message.component';
 import { SyncdataComponent } from './syncdata/syncdata.component';
 
 @NgModule({
@@ -51,6 +58,7 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientAddEditComponent,
         ClientRemoveComponent,
         PrintClientComponent,
+        MessageComponent,
     ],
     declarations: [
         AccessDeniedComponent,
@@ -68,12 +76,14 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientRemoveComponent,
         PrintClientComponent,
         ClientListTableComponent,
+        MessageComponent,
     ],
     providers: [
         AccountHttpService,
         DashboardHttpService,
         CommonServices,
         IdentityService,
+        MessageService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

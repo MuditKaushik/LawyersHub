@@ -2,9 +2,9 @@
     <form class="form-horizontal" role="document">
         <div class="row form-group">
             <div class="col">
-                <h5>Are you sure you want to remove this client?</h5>
+                <h5>Are you sure you want to remove {{client.firstName}} {{client.middleName}} {{client.lastName}}?</h5>
             </div>
         </div>
-        <button class="btn btn-outline-danger" type="button">Remove</button>
+        <button class="btn btn-outline-danger" type="button" (click)="remove(client.clientid);">Remove</button>
     </form>
 </div>

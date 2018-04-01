@@ -10,8 +10,10 @@ export class RouteGaurd implements CanActivate {
         return this.validateRoute(state.url);
     }
     validateRoute(url: string): boolean {
-        if (this.identity.getIdentity()) { return this.identity.getIdentity().isActive; }
-        this.routes.navigate(['/access_denied', httpStatus.UNAUTHORIZED]);
-        return false;
+        if (!this.identity.getIdentity().isActive) {
+            this.routes.navigate(['/access_denied', httpStatus.UNAUTHORIZED]);
+            return false;
+        }
+        return true;
     }
 }

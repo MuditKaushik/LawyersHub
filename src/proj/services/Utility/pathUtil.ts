@@ -7,5 +7,5 @@ export function GetImages(image: string) {
 }
 
 export function GetStyle(componentFolder: string, stylesheetName: string) {
-    return `/app/proj/scss/${componentFolder}/${stylesheetName}`;
+    return `app/proj/scss/${componentFolder}/${stylesheetName}`;
 }

@@ -12,8 +12,18 @@ import { IClientModel, IResponseBody } from '../../../models/data-models';
 export class DashboardHttpService {
     constructor(private http: HttpClient, private identity: IdentityService) {
     }
-    getClientList(userId: string): Observable<HttpResponse<IResponseBody<IClientModel[]>>> {
-        return this.http.get<IResponseBody<IClientModel[]>>(`${DashboardEndpoints.getClient}/${this.identity.getIdentity().userid}/${true}`, { observe: 'response' })
+    getPrivateClients(userId: string): Observable<HttpResponse<IResponseBody<IClientModel[]>>> {
+        return this.http.get<IResponseBody<IClientModel[]>>(
+            `${DashboardEndpoints.getClient}/${this.identity.getIdentity().userid}/${true}`,
+            { observe: 'response' })
+            .map((data) => {
+                return data;
+            }).catch(ErrorHandler);
+    }
+    getPublicClients(userId: string): Observable<HttpResponse<IResponseBody<IClientModel[]>>> {
+        return this.http.get<IResponseBody<IClientModel[]>>(
+            `${DashboardEndpoints.getClient}/${this.identity.getIdentity().userid}/${false}`,
+            { observe: 'response' })
             .map((data) => {
                 return data;
             }).catch(ErrorHandler);
@@ -27,5 +37,13 @@ export class DashboardHttpService {
             return result;
         }).catch(ErrorHandler);;
 
+    }
+    removeClient(clientId: string): Observable<HttpResponse<IResponseBody<any>>> {
+        return this.http.delete<IResponseBody<any>>(
+            `${DashboardEndpoints.removeClient}/${clientId}/${this.identity.getIdentity().userid}`,
+            { observe: 'response' })
+            .map((data) => {
+                return data;
+            });
     }
 }

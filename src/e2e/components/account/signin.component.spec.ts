@@ -8,22 +8,17 @@ let login: ISigninModel = {
 };
 
 describe('Signin Component', () => {
-    let signinCompFixture: ComponentFixture<SigninComponent>;
-    let signInTestComp: SigninComponent;
     beforeEach(async () => {
         TestBed.configureTestingModule({
             declarations: [SigninComponent]
         });
     });
 
-    it('Should initiate signin component', () => {
-        TestBed.configureTestingModule({
-            declarations: [SigninComponent]
-        }).compileComponents().then(() => {
-            signinCompFixture = TestBed.createComponent(SigninComponent);
-            signinCompFixture.detectChanges();
-            signInTestComp = signinCompFixture.componentInstance;
-            expect(signInTestComp).toBeDefined();
+    it('Should initiate signin component', async () => {
+        TestBed.compileComponents().then(async () => {
+            let signinCompFixture = TestBed.createComponent(SigninComponent);
+            let signInTestComp = signinCompFixture.debugElement.componentInstance;
+            expect(signInTestComp).toBeTruthy();
         });
     });
 });

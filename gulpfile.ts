@@ -1,13 +1,14 @@
 import * as gulp from 'gulp';
 import * as run_sequence from 'run-sequence';
+import * as gulp_sass from 'gulp-sass';
 
 enum paths {
     template_src = './src/proj/templates/**/*',
     images_src = './src/proj/images/**/*',
-    scss_src = './src/proj/scss/**/*',
+    scss_src = './src/proj/scss/styles.scss',
     template_dest = './app/proj/templates/',
     images_dest = './app/proj/images/',
-    scss_dest = './app/proj/scss/',
+    scss_dest = './app/proj/css/',
 }
 function CopyTemplate() {
     return gulp.src(paths.template_src).pipe(gulp.dest(paths.template_dest));
@@ -16,7 +17,9 @@ function CopyImages() {
     return gulp.src(paths.images_src).pipe(gulp.dest(paths.images_dest));
 }
 function CopyScss() {
-    return gulp.src(paths.scss_src).pipe(gulp.dest(paths.scss_dest));
+    return gulp.src(paths.scss_src)
+        .pipe(gulp_sass().on('error', gulp_sass.logError))
+        .pipe(gulp.dest(paths.scss_dest));
 }
 
 gulp.task('copy_templates', CopyTemplate);

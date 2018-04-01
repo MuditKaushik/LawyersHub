@@ -10,4 +10,5 @@ export enum CommonEndpoints {
 export enum DashboardEndpoints {
     getClient = 'http://localhost:1802/api/v1/authuser/getclients',
     addClient = 'http://localhost:1802/api/v1/authuser/addclient',
+    removeClient = 'http://localhost:1802/api/v1/authuser/removeclient',
 }

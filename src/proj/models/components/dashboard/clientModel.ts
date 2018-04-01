@@ -18,3 +18,14 @@ export interface IClientModel {
     about: string;
     isprivate: boolean;
 }
+
+export class IClientVitalInfo {
+    clientInfo: IClientModel;
+    constructor(client: IClientModel) {
+        this.clientInfo = client;
+    }
+    get fullName(): string {
+        return `${this.clientInfo.firstName} ${this.clientInfo.middleName} ${this.clientInfo.lastName}`;
+    }
+}
+
