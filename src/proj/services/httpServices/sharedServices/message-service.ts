@@ -1,36 +1,54 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 import { IAlertModel } from '../../../models/data-models';
 import { AlertTypeEnum } from '../../Utility/enumUtil';
-
 @Injectable()
 export class MessageService {
-    private alerts: Array<IAlertModel> = [];
-    constructor(private ngzone: NgZone) { }
+    private alerts = new Subject<Array<IAlertModel>>();
+    constructor() { }
+    /**
+     * 
+     * @param {AlertTypeEnum} type 
+     * @param {string} message 
+     * @param {string | null} icon 
+     * @param {boolean} isdismissable 
+     */
     addMessage(type: AlertTypeEnum, message: string, icon: string | null, isdismissable: boolean): void {
-        this.alerts.push({
+        let alert: Array<IAlertModel> = [{
             alertId: this.generateAlertIds(),
             type: type,
             message: message,
             iconClass: icon,
             dismissable: isdismissable
-        });
+        }]
+        this.alerts.next(alert);
     }
-    getMessage(): Array<IAlertModel> {
+    getMessage(): Subject<Array<IAlertModel>> {
         return this.alerts;
     }
+    /**
+     * 
+     * @param {number|null} alertId
+     */
     clearMessages(alertId?: number): void {
         if (alertId != null) {
             this.removeAlertById(alertId);
         } else {
-            this.alerts = [];
+            this.alerts = new Subject<Array<IAlertModel>>();
         }
     }
+    /**
+     * accept alertId
+     * @param {number} id 
+     */
     private removeAlertById(id: number): void {
-        for (let alert of this.alerts) {
-            if (alert.alertId === id) {
-                this.alerts.splice(this.alerts.indexOf(alert), 1);
+        this.alerts.subscribe((alerts) => {
+            for (let alert of alerts) {
+                if (alert.alertId === id) {
+                    alerts.splice(alerts.indexOf(alert), 1);
+                }
             }
-        }
+        });
     }
     private generateAlertIds(): number {
         return new Date().setUTCMilliseconds(100);
