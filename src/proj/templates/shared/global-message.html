@@ -1,0 +1,6 @@
+<div *ngIf="globalMessage.message" role="alert" class="{{globalMessage.type}} row offset-md-1 col-10 docker-message mt-4">
+    <div>
+        <i [ngClass]="globalMessage.iconClass!=null?alert.iconClass:'fa fa-exclamation-circle'" aria-hidden="true"></i>
+        {{globalMessage.message}}
+    </div>
+</div>

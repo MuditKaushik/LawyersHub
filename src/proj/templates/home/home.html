@@ -30,6 +30,7 @@
     </div>
     <sign-in (authUser)="IsAuthenticated($event)" *ngIf="!isAuthUser"></sign-in>
 </nav>
+<global-message></global-message>
 <div class="container-fluid mt-5 pt-2">
     <router-outlet></router-outlet>
 </div>

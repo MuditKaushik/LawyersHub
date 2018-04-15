@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IdentityModel } from '../../models/data-models';
-import { IdentityService } from '../../services/httpServices/http-services';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
+import { IdentityService } from '../../services/httpServices/http-services';
 
 @Component({
     selector: 'lawyer-hub',

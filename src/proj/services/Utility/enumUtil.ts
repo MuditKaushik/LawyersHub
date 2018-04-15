@@ -28,3 +28,4 @@ export enum SuccessMessageEnum {
     createUserSuccess = 'User created successfully.',
     loading = 'loading...',
 }
+export type MessageTypeEnum = 'global' | 'local';

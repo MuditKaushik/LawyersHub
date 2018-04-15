@@ -27,7 +27,14 @@ export class PrivateClientComponent implements OnInit {
             this.clients.filter(client => client.clientid == clientId)
                 .forEach((client: IClientModel) => {
                     this.clients.splice(this.clients.indexOf(client), 1);
-                    this.messageService.addMessage(AlertTypeEnum.successType, 'Successfully Deleted', null, false);
+                    this.messageService.addMessage(AlertTypeEnum.successType,
+                        `${client.firstName} ${client.middleName} ${client.lastName} Successfully Deleted.`
+                        , null, true);
+                    if (this.clients.length < 1) {
+                        this.messageService.addMessage(AlertTypeEnum.infoType,
+                            'No record found.'
+                            , null, false);
+                    }
                 });
         }
     }

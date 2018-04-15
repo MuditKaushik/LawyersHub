@@ -29,7 +29,8 @@ import { PublicClientComponent } from './dashboard/public-client.component';
 import { SettingsComponents } from './settings/settings.components';
 import { ClientListTableComponent } from './shared/client-list-table.component';
 import { LoaderComponent } from './shared/loader.component';
-import { MessageComponent } from './shared/message.component';
+import { LocalMessageComponent } from './shared/message.component';
+import { GlobalMessageComponent } from './shared/global-message.component';
 import { SyncdataComponent } from './syncdata/syncdata.component';
 
 @NgModule({
@@ -58,7 +59,8 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientAddEditComponent,
         ClientRemoveComponent,
         PrintClientComponent,
-        MessageComponent,
+        LocalMessageComponent,
+        GlobalMessageComponent,
     ],
     declarations: [
         AccessDeniedComponent,
@@ -76,7 +78,8 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientRemoveComponent,
         PrintClientComponent,
         ClientListTableComponent,
-        MessageComponent,
+        LocalMessageComponent,
+        GlobalMessageComponent,
     ],
     providers: [
         AccountHttpService,

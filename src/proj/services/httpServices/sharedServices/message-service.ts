@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { IAlertModel } from '../../../models/data-models';
-import { AlertTypeEnum } from '../../Utility/enumUtil';
+import { AlertTypeEnum, MessageTypeEnum } from '../../Utility/enumUtil';
 @Injectable()
 export class MessageService {
-    private alerts = new Subject<Array<IAlertModel>>();
+    private localMessage = new Subject<IAlertModel>();
+    private globalMessage = new Subject<IAlertModel>();
     constructor() { }
     /**
      * 
@@ -14,41 +16,26 @@ export class MessageService {
      * @param {boolean} isdismissable 
      */
     addMessage(type: AlertTypeEnum, message: string, icon: string | null, isdismissable: boolean): void {
-        let alert: Array<IAlertModel> = [{
+        let alertMessage: IAlertModel = {
             alertId: this.generateAlertIds(),
             type: type,
             message: message,
             iconClass: icon,
             dismissable: isdismissable
-        }]
-        this.alerts.next(alert);
-    }
-    getMessage(): Subject<Array<IAlertModel>> {
-        return this.alerts;
-    }
-    /**
-     * 
-     * @param {number|null} alertId
-     */
-    clearMessages(alertId?: number): void {
-        if (alertId != null) {
-            this.removeAlertById(alertId);
+        };
+        if (isdismissable) {
+            this.globalMessage.next(alertMessage);
         } else {
-            this.alerts = new Subject<Array<IAlertModel>>();
+            this.localMessage.next(alertMessage);
         }
     }
-    /**
-     * accept alertId
-     * @param {number} id 
-     */
-    private removeAlertById(id: number): void {
-        this.alerts.subscribe((alerts) => {
-            for (let alert of alerts) {
-                if (alert.alertId === id) {
-                    alerts.splice(alerts.indexOf(alert), 1);
-                }
-            }
-        });
+    getMessage(messageType: MessageTypeEnum): Observable<IAlertModel> {
+        return (messageType === 'global') ?
+            this.globalMessage.asObservable() :
+            this.localMessage.asObservable();
+    }
+    removeGlobalMessage() {
+        this.globalMessage.next(<IAlertModel>{});
     }
     private generateAlertIds(): number {
         return new Date().setUTCMilliseconds(100);

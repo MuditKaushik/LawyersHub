@@ -29,7 +29,7 @@ gulp.task('copy_scss', CopyScss);
 gulp.task('watcher', function () {
     gulp.watch(paths.template_src, CopyTemplate);
     gulp.watch(paths.images_src, CopyImages);
-    gulp.watch(paths.scss_src, CopyScss);
+    gulp.watch('./src/proj/scss/**/*', CopyScss);
 });
 gulp.task('build', function () {
     return run_sequence(['copy_templates', 'copy_images', 'copy_scss']);
