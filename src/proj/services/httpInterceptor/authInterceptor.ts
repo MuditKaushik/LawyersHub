@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
         let user = this.userIdentity.getIdentity();
         if (user) {
             let authRequest = req.clone({
-                setHeaders: { Authorization: user.access_token },
+                setHeaders: { 'authorization': user.access_token },
             });
             return next.handle(authRequest);
         } else {

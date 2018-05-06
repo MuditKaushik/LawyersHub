@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { ErrorHandler } from '../httpServicesUtility/httpErrorHandler';
-import { DashboardEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
-import { IdentityService } from '../accountSevices/Identity-service';
 import { IClientModel, IResponseBody } from '../../../models/data-models';
+import { IdentityService } from '../accountSevices/Identity-service';
+import { DashboardEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
+import { ErrorHandler } from '../httpServicesUtility/httpErrorHandler';
 
 @Injectable()
 export class DashboardHttpService {
@@ -14,7 +14,7 @@ export class DashboardHttpService {
     }
     getPrivateClients(userId: string): Observable<HttpResponse<IResponseBody<IClientModel[]>>> {
         return this.http.get<IResponseBody<IClientModel[]>>(
-            `${DashboardEndpoints.getClient}/${this.identity.getIdentity().userid}/${true}`,
+            `${DashboardEndpoints.getClient}/true/${this.identity.getIdentity().userid}`,
             { observe: 'response' })
             .map((data) => {
                 return data;
@@ -22,7 +22,7 @@ export class DashboardHttpService {
     }
     getPublicClients(userId: string): Observable<HttpResponse<IResponseBody<IClientModel[]>>> {
         return this.http.get<IResponseBody<IClientModel[]>>(
-            `${DashboardEndpoints.getClient}/${this.identity.getIdentity().userid}/${false}`,
+            `${DashboardEndpoints.getClient}/false/${this.identity.getIdentity().userid}`,
             { observe: 'response' })
             .map((data) => {
                 return data;
@@ -32,10 +32,10 @@ export class DashboardHttpService {
         return this.http.post<any>(
             `${DashboardEndpoints.addClient}/${this.identity.getIdentity().userid}`,
             client,
-            { observe: 'response' }
+            { observe: 'response' },
         ).map((result: HttpResponse<any>) => {
             return result;
-        }).catch(ErrorHandler);;
+        }).catch(ErrorHandler);
 
     }
     removeClient(clientId: string): Observable<HttpResponse<IResponseBody<any>>> {

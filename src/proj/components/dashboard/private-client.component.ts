@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import httpStatus = require('http-status-codes');
 import { IClientModel, IResponseBody } from '../../models/data-models';
+import { DashboardHttpService, IdentityService, MessageService } from '../../services/httpServices/http-services';
 import { AlertTypeEnum } from '../../services/Utility/enumUtil';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
-import { DashboardHttpService, IdentityService, MessageService } from '../../services/httpServices/http-services';
-import httpStatus = require('http-status-codes');
 
 @Component({
-    templateUrl: GetTemplate('dashboard', 'private-client.html')
+    templateUrl: GetTemplate('dashboard', 'private-client.html'),
 })
 export class PrivateClientComponent implements OnInit {
     clients: Array<IClientModel> = new Array<IClientModel>();
@@ -24,7 +24,7 @@ export class PrivateClientComponent implements OnInit {
 
     removedClientId(clientId: string): void {
         if (clientId != null) {
-            this.clients.filter(client => client.clientid == clientId)
+            this.clients.filter((client) => client.clientid === clientId)
                 .forEach((client: IClientModel) => {
                     this.clients.splice(this.clients.indexOf(client), 1);
                     this.messageService.addMessage(AlertTypeEnum.successType,
@@ -46,11 +46,11 @@ export class PrivateClientComponent implements OnInit {
             if (response.success) {
                 this.clients = response.result;
             } else {
-                this.messageService.addMessage(AlertTypeEnum.infoType, <string>response.message, null, false);
+                this.messageService.addMessage(AlertTypeEnum.infoType, (response.message != null) ? response.message : '', null, false);
             }
         }, (err) => {
             this.showloader = false;
-            this.messageService.addMessage(AlertTypeEnum.dangerType, <string>err.message, null, false);
+            this.messageService.addMessage(AlertTypeEnum.dangerType, err.message, null, false);
         });
     }
 }

@@ -1,29 +1,29 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-// import httpStatus = require('http-status-codes');
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { IResponseBody } from '../../../models/data-models';
 import { CommonEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
 
 @Injectable()
 export class CommonServices {
     constructor(private http: HttpClient) { }
-    getcountries(): Observable<HttpResponse<any>> {
+    getcountries(): Observable<HttpResponse<IResponseBody<any>>> {
         return this.http.get(CommonEndpoints.getCountries, { observe: 'response' })
-            .map((result: HttpResponse<any>) => {
-                return (result.status === 200) ? result.body : [];
-            });
-    }
-    getStates(): Observable<HttpResponse<Array<string>>> {
-        return this.http.get(CommonEndpoints.getStates, { observe: 'response' })
-            .map((result: HttpResponse<Array<string>>) => {
+            .map((result: HttpResponse<IResponseBody<any>>) => {
                 return result;
             });
     }
-    getCities(state: string): Observable<HttpResponse<Array<string>>> {
+    getStates(): Observable<HttpResponse<IResponseBody<any>>> {
+        return this.http.get(CommonEndpoints.getStates, { observe: 'response' })
+            .map((result: HttpResponse<IResponseBody<any>>) => {
+                return result;
+            });
+    }
+    getCities(state: string): Observable<HttpResponse<IResponseBody<any>>> {
         return this.http.get(`${CommonEndpoints.getCities}/${state}`, { observe: 'response' })
-            .map((result: HttpResponse<Array<string>>) => {
+            .map((result: HttpResponse<IResponseBody<any>>) => {
                 return result;
             });
     }

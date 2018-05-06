@@ -4,7 +4,7 @@ import httpStatus = require('http-status-codes');
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { ISigninModel, IdentityModel, ISignupModel, IResponseBody } from '../../../models/data-models';
+import { IdentityModel, IResponseBody, ISigninModel, ISignupModel } from '../../../models/data-models';
 import { AccountEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
 
 @Injectable()

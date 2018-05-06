@@ -6,12 +6,12 @@ export class IdentityService {
     private defaultUser: IdentityModel;
     constructor() {
         this.defaultUser = {
-            userName: 'default',
-            isActive: false,
-            email: 'default',
-            fullName: 'default',
             access_token: 'N/A',
-            userid: 'N/A'
+            email: 'default',
+            fullname: 'default',
+            isActive: false,
+            userid: 'N/A',
+            username: 'default',
         };
     }
     setUserIdentity(identity: IdentityModel): void {
@@ -23,8 +23,8 @@ export class IdentityService {
     getIdentity(): IdentityModel {
         let user: IdentityModel = {} as IdentityModel;
         let identity: string | null = localStorage.getItem('identity');
-        if (identity != 'undefined' && identity != null) {
-            user = <IdentityModel>JSON.parse(identity as string)
+        if (identity !== 'undefined' && identity != null) {
+            user = JSON.parse(identity as string);
         } else {
             user = this.defaultUser;
         }

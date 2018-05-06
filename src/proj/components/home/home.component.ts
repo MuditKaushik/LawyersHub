@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IdentityModel } from '../../models/data-models';
-import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 import { IdentityService } from '../../services/httpServices/http-services';
+import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({
     selector: 'lawyer-hub',
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     IsAuthenticated(identityUser: IdentityModel): void {
         if (identityUser) {
             this.isAuthUser = identityUser.isActive;
-            this.user = `${identityUser.fullName} (${identityUser.userName})`;
+            this.user = `${identityUser.fullname} (${identityUser.username})`;
         }
     }
 }
