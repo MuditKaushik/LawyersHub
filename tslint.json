@@ -23,7 +23,10 @@
       "severity": "warning"
     },
     "no-empty": false,
-    "member-ordering": true,
+    "member-ordering": {
+      "options": true,
+      "severity": "error"
+    },
     "quotemark": {
       "options": "single",
       "severity": "warning"
@@ -35,6 +38,10 @@
     "object-literal-key-quotes": {
       "options": "as-needed",
       "severity": "warning"
+    },
+    "object-literal-sort-keys": {
+      "options": "ignore-case",
+      "severity": "off"
     },
     "variable-name": {
       "options": [

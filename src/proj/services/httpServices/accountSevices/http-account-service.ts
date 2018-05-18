@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { IdentityModel, IResponseBody, ISigninModel, ISignupModel } from '../../../models/data-models';
 import { AccountEndpoints } from '../httpServicesUtility/httpEndpontsEnum';
+import { ErrorHandler } from '../httpServicesUtility/httpErrorHandler';
 
 @Injectable()
 export class AccountHttpService {
@@ -14,12 +15,12 @@ export class AccountHttpService {
         return this.http.post(AccountEndpoints.token, login, { observe: 'response' })
             .map((result: HttpResponse<IResponseBody<IdentityModel>>) => {
                 return result;
-            });
+            }).catch(ErrorHandler);
     }
     createUser(userAdd: ISignupModel): Observable<HttpResponse<IResponseBody<boolean>>> {
         return this.http.post(AccountEndpoints.addUser, userAdd, { observe: 'response' })
             .map((result: HttpResponse<IResponseBody<boolean>>) => {
                 return result;
-            });
+            }).catch(ErrorHandler);
     }
 }

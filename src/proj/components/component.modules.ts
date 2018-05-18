@@ -5,15 +5,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Spinner } from '../components/shared/spinner-component';
 import { CustomDirectiveModule } from '../directives/CustomDirectiveModule';
 import { RouteGaurd } from '../router/route-gaurd';
 import { AuthInterceptor } from '../services/httpInterceptor/authInterceptor';
 import {
     AccountHttpService,
-    DashboardHttpService,
-    IdentityService,
     CommonServices,
-    MessageService
+    DashboardHttpService,
+    HttpServiceTracker,
+    IdentityService,
+    MessageService,
 } from '../services/httpServices/http-services';
 import { AccessDeniedComponent } from './account/access-denied.component';
 import { LinksComponent } from './account/links.component';
@@ -28,11 +30,10 @@ import { PrivateClientComponent } from './dashboard/private-client.component';
 import { PublicClientComponent } from './dashboard/public-client.component';
 import { SettingsComponents } from './settings/settings.components';
 import { ClientListTableComponent } from './shared/client-list-table.component';
+import { GlobalMessageComponent } from './shared/global-message.component';
 import { LoaderComponent } from './shared/loader.component';
 import { LocalMessageComponent } from './shared/message.component';
-import { GlobalMessageComponent } from './shared/global-message.component';
 import { SyncdataComponent } from './syncdata/syncdata.component';
-
 @NgModule({
     imports: [
         CommonModule,
@@ -61,6 +62,7 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         PrintClientComponent,
         LocalMessageComponent,
         GlobalMessageComponent,
+        Spinner,
     ],
     declarations: [
         AccessDeniedComponent,
@@ -80,6 +82,7 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         ClientListTableComponent,
         LocalMessageComponent,
         GlobalMessageComponent,
+        Spinner,
     ],
     providers: [
         AccountHttpService,
@@ -87,6 +90,7 @@ import { SyncdataComponent } from './syncdata/syncdata.component';
         CommonServices,
         IdentityService,
         MessageService,
+        HttpServiceTracker,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

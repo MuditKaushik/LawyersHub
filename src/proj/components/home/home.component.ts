@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { IdentityModel } from '../../models/data-models';
-import { IdentityService } from '../../services/httpServices/http-services';
+import { HttpServiceTracker, IdentityService } from '../../services/httpServices/http-services';
 import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 
 @Component({
@@ -10,9 +10,11 @@ import { GetImages, GetTemplate } from '../../services/Utility/pathUtil';
 })
 export class HomeComponent implements OnInit {
     logo: string;
-    isAuthUser: boolean;
+    isAuthUser: boolean = false;
     user: string;
-    constructor(private identity: IdentityService, private route: Router) {
+    constructor(private identity: IdentityService,
+        private route: Router,
+        private serviceTracker: HttpServiceTracker) {
     }
 
     ngOnInit(): void {
